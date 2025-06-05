@@ -1,0 +1,3 @@
+UPDATE users
+SET job = 5
+WHERE users.username = "Spiderman"

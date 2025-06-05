@@ -1,0 +1,18 @@
+Exercice 1
+
+SELECT users.email,jobs.name 
+FROM users JOIN jobs 
+ON users.job = jobs.id 
+WHERE users.id = 7
+
+Exercice 2
+
+SELECT users.*,jobs.name 
+FROM users JOIN jobs 
+ON users.job = jobs.id
+
+Exercice 3
+
+SELECT users.email, 
+FROM users JOIN jobs 
+ON users.job = jobs.id

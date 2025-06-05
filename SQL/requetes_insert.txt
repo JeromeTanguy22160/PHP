@@ -1,0 +1,9 @@
+Exercice 1
+
+INSERT INTO users (username,email,job)
+VALUES ("Spiderman","peter.parker@daily-bugle.com",1)
+
+Exercice 2
+
+INSERT INTO jobs(name)
+VALUES ("Lycéen")

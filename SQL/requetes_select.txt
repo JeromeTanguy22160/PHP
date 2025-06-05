@@ -1,0 +1,19 @@
+Exercice 1
+
+SELECT * FROM `users`
+
+Exercice 2
+
+SELECT * FROM `users` WHERE id = 3
+
+Exercice 3
+
+SELECT username FROM `users` WHERE id = 2
+
+Exercice 4
+
+SELECT * FROM `users` ORDER by id DESC
+
+Exercice 5
+
+SELECT * FROM `users` ORDER BY id DESC LIMIT 3
