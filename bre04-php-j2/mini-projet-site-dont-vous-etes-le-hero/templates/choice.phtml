@@ -10,34 +10,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body id="choice-dark-blue">
+<body id="<?=$color?>">
 <main>
     <section>
-        <h2>Description du choix à faire</h2>
+        <h2> <?= $choiceShortSentence ?> </h2>
         <div>
-            <form method="get" action="">
+             <?php if (count($choices) > 0) { ?>
+            <form method="get" action="choices.php">
+                
+                <input type="hidden" name ="eventNumber" value = "<?= $eventNumber?>"
+                
+                <?php foreach($choices as $index =>$choice ) { ?>
+                
                 <div>
-                    <input type="radio" id="choice-1" name="choice" value="choice-1">
-                    <label for="choice-1">Choix 1</label>
+                    <input type="radio" id="choice-<?=$index?>" name="choice" value="choice-<?=$index?>">
+                    <label for="choice-<?=$index?>"><?=$choice?></label>
                 </div>
-                <div>
-                    <input type="radio" id="choice-2" name="choice" value="choice-2">
-                    <label for="choice-1">Choix 2</label>
-                </div>
-                <div>
-                    <input type="radio" id="choice-3" name="choice" value="choice-3">
-                    <label for="choice-1">Choix 3</label>
-                </div>
+                
+                <?php } ?>
+                
                 <div>
                     <input type="submit" value="Valider le choix" />
                 </div>
             </form>
+             <?php } else { ?>
+                <a classe = "lienAccueil" href="index.html">Retour à l'accueil</a>
+            <?php } ?>
         </div>
     </section>
     <section>
         <section>
-            <img src="assets/img/staff.png" />
-            <h1>Description de la situation, blablabl magicien, blablabla</h1>
+            <img src="assets/img/<?=$eventImage?>" />
+            <h1> <?= $eventDescription ?> </h1>
         </section>
     </section>
 </main>

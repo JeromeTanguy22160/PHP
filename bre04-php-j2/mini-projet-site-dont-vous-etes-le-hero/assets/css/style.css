@@ -196,7 +196,6 @@ h2 {
     font-size: 1.2em;
 }
 
-
 /* CHOICE RED */
 
 #choice-red {
@@ -227,6 +226,19 @@ h2 {
     color : #c10d32;
     padding-top:40%;
     padding-left: 15%;
+}
+
+#choice-red section:first-of-type div a{
+     border : none;
+    background-color: #c10d32;
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+    text-transform: uppercase;
+    height : 3em;
+    min-width: 50%;
+    margin-top: 2em;
+    font-size: 1.2em;
+    padding:1em 2em;
 }
 
 #choice-red main > section:last-of-type {
@@ -338,6 +350,19 @@ h2 {
     padding-left: 15%;
 }
 
+#choice-dark-blue section:first-of-type div a{
+     border : none;
+    background-color: #0a066e;
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+    text-transform: uppercase;
+    height : 3em;
+    min-width: 50%;
+    margin-top: 2em;
+    font-size: 1.2em;
+    padding:1em 2em;
+}
+
 #choice-dark-blue main > section:last-of-type {
     background-color: #0a066e;
     color : white;
@@ -445,6 +470,19 @@ h2 {
     color : #4b577c;
     padding-top:40%;
     padding-left: 15%;
+}
+
+#choice-grey-blue section:first-of-type div a{
+     border : none;
+    background-color: #4b577c;
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+    text-transform: uppercase;
+    height : 3em;
+    min-width: 50%;
+    margin-top: 2em;
+    font-size: 1.2em;
+    padding:1em 2em;
 }
 
 #choice-grey-blue main > section:last-of-type {
