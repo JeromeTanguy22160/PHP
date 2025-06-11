@@ -8,5 +8,4 @@ $query -> execute();
 $users = $query -> fetchAll(PDO::FETCH_ASSOC);
 
 var_dump($users);
-
 ?>
