@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST["color"])){
-    $color = $_POST["color"];
-    echo $color;
-}
+   setcookie("color", $_POST["color"]);
+   $_COOKIE["color"];
+};
 ?>
 
 <!doctype html>
@@ -10,7 +10,7 @@ if (isset($_POST["color"])){
 	<head>
 		<meta charset="utf-8">
 		<title>Exercice cookie</title>
-		<link rel="stylesheet" href="css/<?=$color?>.css" />
+		<link rel="stylesheet" href="css/<?=$_COOKIE["color"]?>.css" />
 	</head>
 	<body>
 		<h1>
