@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+    
+    if (isset($_SESSION["user"], $_SESSION["user"]["first_name"], $_SESSION["user"]["last_name"] )) {
+    echo "<h1>Bonjour" . " " . $_SESSION["user"]["first_name"] . " " . $_SESSION["user"]["last_name"] . "</h1>";
+}?>
+      <a href="index.php?page=inscription">Inscription</a>
+      <a href="index.php?page=connexion">Connexion</a>
+</body>
+</html>
