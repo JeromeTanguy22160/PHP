@@ -10,7 +10,7 @@ class Router {
     public function handleRequest(array $get) : void {
         if (!isset($get["route"]))
         {
-            $pageControlleurHome= new PageController();
+            $pageControlleurHome = new PageController();
             $pageControlleurHome -> home();
             
         }
