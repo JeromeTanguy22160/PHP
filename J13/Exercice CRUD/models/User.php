@@ -28,22 +28,22 @@ class User {
         $this -> email = $email; 
     }
     
-    public function getFirstname() : string
+    public function getFirstName() : string
     {
         return $this -> first_name;
     }
     
-    public function setFirstname(string $first_name) : void
+    public function setFirstName(string $first_name) : void
     {
         $this -> first_name = $first_name; 
     }
     
-    public function getLastname() : string
+    public function getLastName() : string
     {
         return $this -> last_name;
     }
     
-    public function setLastname(string $last_name) : void
+    public function setLastName(string $last_name) : void
     {
         $this -> last_name = $last_name; 
     }
