@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 abstract class AbstractManager {
     
-    public PDO $db;
+    protected PDO $db;
     
     public function __construct(){
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);

@@ -57,3 +57,17 @@ Dans le fichier `managers/AbstractManager.php`, vous allez créer une classe abs
 Le constructeur de la classe ne prend pas de paramètres, par contre, il initialise son attribut `$db` avec les informations de connexion à votre base de données.
 
 >💡 N'oubliez pas de require le fichier `managers/AbstractManager.php` dans votre fichier `config/autoload.php`
+
+## Étape 6
+
+Dans cette étape, nous allons gérer les interactions avec votre base de données. Vous pouvez vous inspirer des différents exercices réalisés pendant le module POO (userbase en POO, blog en POO) et de ce que vous aviez appris avec Hugues sur les requêtes avec PDO (https://discord.com/channels/1092386966760329229/1290243753428123683/1326470557121904641).
+
+Dans le fichier `managers/UserManager.php`, créez une classe `UserManager` qui hérite de la classe `AbstractManager`.
+
+Elle n'a pas d'attributs et son constructeur ne fait rien à part appeler le constructeur de sa classe parente.
+
+Elle contient par contre les méthodes publiques nécessaires pour un Manager (https://kornog-dev.github.io/BRE03/php/mvc/#les-managers).
+
+Implémentez ces méthodes en adaptant la situation à la classe `User` et à la table `users` de votre base de données.
+
+>💡 N'oubliez pas de require le fichier `managers/UserManager.php` dans votre fichier `config/autoload.php`
