@@ -1,6 +1,6 @@
 <?php
 
-class PageController{
+class UserController{
         
     public function list() : void {
         $route = "list";

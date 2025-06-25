@@ -9,53 +9,32 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="index.php">Accueil</a>
+						<a href="index.php">List</a>
 					</li>
 					<li>
-						<a href="index.php?route=a-propos">À propos</a>
+						<a href="index.php?route=show_user">Show</a>
 					</li>
 					<li>
-						<a href="index.php?route=contact">Contact</a>
+						<a href="index.php?route=create_user">Create</a>
 					</li>
 					<li>
-						<a href="index.php?route=categorie&categorie=dev-back">Dev-Back</a>
-					</li>
-					<li>
-						<a href="index.php?route=categorie&categorie=dev-front">Dev-Front</a>
-					</li>
-					<li>
-						<a href="index.php?route=article&article=i-love-php">I LOVE PHP</a>
-					</li>
-					<li>
-						<a href="index.php?route=article&article=i-love-js">I LOVE JS</a>
+						<a href="index.php?route=update_user">Update</a>
 					</li>
 				</ul>
 			</nav>
 		</header>
 		<?php
-		    if($route === "home"){
-		    	require "templates/home.phtml";
+		    if($route === "list"){
+		    	require "templates/users/list.phtml";
 		    }
-		    else if($route === "contact"){
-		    	require "templates/contact.phtml";
+		    else if($route === "show_user"){
+		    	require "templates/users/show.phtml";
 		    }
-		    else if($route === "about"){
-		    	require "templates/about.phtml";
+		    else if($route === "create_user"){
+		    	require "templates/users/create.phtml";
 		    }
-		    else if($route === "notFound"){
-		    	require "templates/notFound.phtml";
-		    }
-		    else if($route === "categorie" && $categorie = "dev-back"){
-		    	require "templates/devBack.phtml";
-		    }
-		    else if($route === "categorie" && $categorie = "dev-front"){
-		    	require "templates/devFront.phtml";
-		    }
-		    else if($route === "article" && $categorie = "i-love-php"){
-		    	require "templates/iLovePHP.phtml";
-		    }
-		    else if($route === "article" && $categorie = "i-love-js"){
-		    	require "templates/iLoveJS.phtml";
+		    else if($route === "update_user"){
+		    	require "templates/users/update.phtml";
 		    }
 		?>
 		</body>

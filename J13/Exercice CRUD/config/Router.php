@@ -1,5 +1,6 @@
 <?php
 
+
 class Router{
     
     public function __construct()
@@ -11,35 +12,35 @@ class Router{
      
          if (!isset($get["route"])){
              
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> list();
+            $userControllerHome = new UserController();
+            $userControllerHome -> list();
          }
          else if ($get["route"] ==="show_user"){
              
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> show();
+            $userControllerShow = new UserController();
+            $userControllerShow -> show();
          }
          else if ($get["route"] === "create_user"){
 
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> create();
+            $userControllerCreate = new UserController();
+            $userControllerCreate -> create();
          }
          else if ($get["route"] === "check_create_user"){
              
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> checkCreate();
+            $userControllerCheckCreate = new UserController();
+            $userControllerCheckCreate -> checkCreate();
          }
          else if ($get["route"] === "update_user"){
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> update();
+            $userControlleurUpdate = new UserController();
+            $userControlleurUpdate -> update();
          }
          else if ($get["route"] === "check_update_user"){
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> checkUpdate();
+            $userControlleurCheckUpdate = new UserController();
+            $userControlleurCheckUpdate -> checkUpdate();
          }
          else if ($get["route"] === "delete_user"){
-            $userControlleurHome = new UserController();
-            $userControlleurHome -> delete();
+            $userControlleurDelete = new UserController();
+            $userControlleurDelete -> delete();
          }
      }
 }
