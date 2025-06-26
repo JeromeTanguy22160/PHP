@@ -6,14 +6,6 @@ class UserManager extends AbstractManager {
         parent :: __construct();
     }
     
-    public function getUsers() : array{
-        return $this -> users ;
-    }
-    
-    public function setUsers(array $users) :void{
-        $this -> users = $users;
-    }
-    
     public function loadUsers() : array {
         
         $query = $this -> db -> prepare("SELECT * FROM users");

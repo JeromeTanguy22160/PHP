@@ -7,7 +7,6 @@ class UserController{
         
         $userManagerList = new UserManager();
         $users = $userManagerList -> loadUsers();
-        var_dump($users);
         
         require "templates/layout.phtml";
     }

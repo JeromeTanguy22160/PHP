@@ -1,6 +1,7 @@
 <?php
 
 class User {
+    
     private ? int $id = null;
     
     public function __construct(private string $email, private string $first_name, private string $last_name)
