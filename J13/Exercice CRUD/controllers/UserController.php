@@ -19,6 +19,17 @@ class UserController{
     
     public function checkCreate() : void {
         $route = "check_create_user";
+        
+        $email = $_POST["email"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        
+        $userCreated = new User($email,$first_name,$last_name);
+        $userManagerCreate = new UserManager();
+        $userManagerCreate -> createUser($userCreated);
+        
+        $route = "list";
+        
         require "templates/layout.phtml";
     }
     
