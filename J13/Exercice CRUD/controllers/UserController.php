@@ -29,6 +29,7 @@ class UserController{
         $userManagerCreate -> createUser($userCreated);
         
         $route = "list";
+        header ("https://jerometanguy.sites.3wa.io/PHP/J13/Exercice%20CRUD/index.php"); 
         
         require "templates/layout.phtml";
     }
