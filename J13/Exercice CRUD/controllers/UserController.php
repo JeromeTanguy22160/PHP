@@ -4,6 +4,11 @@ class UserController{
         
     public function list() : void {
         $route = "list";
+        
+        $userManagerList = new UserManager();
+        $users = $userManagerList -> loadUsers();
+        var_dump($users);
+        
         require "templates/layout.phtml";
     }
     

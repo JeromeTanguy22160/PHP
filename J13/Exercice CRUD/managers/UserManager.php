@@ -2,9 +2,6 @@
 
 class UserManager extends AbstractManager {
     
-    private array $user = [];
-    private array $users = [];
-    
     public function __construct(){
         parent :: __construct();
     }
@@ -17,22 +14,37 @@ class UserManager extends AbstractManager {
         $this -> users = $users;
     }
     
-    public function loadUsers() : void {
+    public function loadUsers() : array {
         
         $query = $this -> db -> prepare("SELECT * FROM users");
         $query -> execute();
-        $this -> users = $query->fetchAll(PDO::FETCH_ASSOC);
+        $usersData = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        $users = [];
+        
+        foreach ($usersData as $userData){
+            $user = new User($userData["email"],$userData["first_name"],$userData["last_name"]);
+            $user -> setId($userData["id"]);
+            $users[] = $user;
+        }
+        return $users;
     }
     
-    public function loadUserByID(int $id) : void {
+    public function loadUserByID(int $id) : ?User {
         
         $query = $this -> db -> prepare("SELECT * FROM users WHERE id = :id");
         $parameters = [
         "id" => $id,
         ];
         $query -> execute($parameters);
-        $this -> user = $query->fetch(PDO::FETCH_ASSOC);
+        $userData = $query->fetch(PDO::FETCH_ASSOC);
         
+        if($userData){
+            $user = new User($userData["email"],$userData["first_name"],$userData["last_name"]);
+            $user -> setId($userData["id"]);
+            return $user;
+        }
+        return null ;
     }
     
     public function createUser(User $user) :void {
@@ -65,7 +77,7 @@ class UserManager extends AbstractManager {
     $query->execute($parameters);
     }
     
-    public function deleteUser(User $user): void{
+    public function deleteUser(User $user) : void{
         $query = $this -> db->prepare("DELETE FROM users WHERE id = :id");
 
         $parameters = [

@@ -100,3 +100,18 @@ Elle a principalement 3 chose à faire :
 3. Rediriger vers la page de liste des utilisateurs
 
 Implémentez ces trois comportements puis tester le fonctionnement de votre création d'utilisateur (en vérifiant s'il apparait dans votre base de données).
+
+## Étape 10
+
+Dans cette étape, je vais vous demander d'utiliser le logiciel de votre choix (canva, Google Draw, MS Paint ...) 
+pour créer un schéma de ce qui se passe lorsque vous appelez l'URL `index.php?route=create_user` puisque vous soumettez le formulaire. Vous pouvez vous inspirer du schéma de fonctionnement du MVC présent dans le cours.
+
+## Étape 11
+
+Maintenant que vous avez vu le processus complet pour la création d'un `User`, vous allez devoir rédiger vos propres consignes pour le processus d'affichage de la liste des utilisateurs.
+
+Écrivez ces consignes dans un fichier `prenom-etape-11.md` (en remplaçant le mot prénom par votre prénom) mais ne les implémentez pas.
+
+## Etape 12
+
+Implémentez les consignes que vous avez rédigées à l'étape 11.
