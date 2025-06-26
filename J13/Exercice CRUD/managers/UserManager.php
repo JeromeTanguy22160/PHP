@@ -22,7 +22,7 @@ class UserManager extends AbstractManager {
         return $users;
     }
     
-    public function loadUserByID(int $id) : ?User {
+    public function loadUserById(int $id) : ?User {
         
         $query = $this -> db -> prepare("SELECT * FROM users WHERE id = :id");
         $parameters = [

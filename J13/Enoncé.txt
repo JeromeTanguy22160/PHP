@@ -114,4 +114,8 @@ Maintenant que vous avez vu le processus complet pour la création d'un `User`, 
 
 ## Etape 12
 
-Implémentez les consignes que vous avez rédigées à l'étape 11.
+Implémentez les consignes que vous avez rédigées à l'étape 11
+
+## Étape 13
+
+Pour pouvoir implémenter les routes qui nous permettent d'afficher le détail d'un utilisateur, de le modifier ou de le supprimer, nous allons devoir ajouter un comportement supplémentaire à nos URLs. Essayez de deviner l'information qui pourrait nous manquer.

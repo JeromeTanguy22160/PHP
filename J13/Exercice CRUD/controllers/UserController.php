@@ -13,6 +13,11 @@ class UserController{
     
     public function show() : void {
         $route = "show_user";
+        
+        
+        $userManagerList = new UserManager();
+        $user = $userManagerList -> loadUserById($_GET["id"]);
+        
         require "templates/layout.phtml";
     }
     
