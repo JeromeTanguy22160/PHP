@@ -1,0 +1,14 @@
+<main class="p-5">
+    <h1 class="text-center">Liste des livres</h1>
+    <section class="row g-4 py-5">
+        <?php foreach($books as $book) { ?>
+        <div class="col-6 col-sm-4 col-md-3">
+            <article class="card p-4">
+                <h2 class="card-title"><?=$book ->getTitle()?></h2>
+                <h3 class="card-subtitle mb-2 text-body-secondary"><?=$book->getAuthor()?></h3>
+                <p class="card-text"><?=$book->getDescription()?></p>
+            </article>
+        </div>
+        <?php } ?>
+    </section>
+</main>
