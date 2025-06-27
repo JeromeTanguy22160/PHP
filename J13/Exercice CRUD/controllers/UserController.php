@@ -39,6 +39,8 @@ class UserController{
         
         $route = "list";
         header ("https://jerometanguy.sites.3wa.io/PHP/J13/Exercice%20CRUD/index.php"); 
+     
+        $users = $userManagerCreate -> loadUsers();
         
         require "templates/layout.phtml";
     }
@@ -75,6 +77,15 @@ class UserController{
     
     public function delete() : void {
         $route = "delete_user";
+        
+       
+        $userManagerDelete = new UserManager();
+        $userManagerDelete->deleteUser($_GET["id"]);
+        
+        $route = "list";
+        header ("https://jerometanguy.sites.3wa.io/PHP/J13/Exercice%20CRUD/index.php");
+
+        $users = $userManagerDelete -> loadUsers();
         
         require "templates/layout.phtml";
     }

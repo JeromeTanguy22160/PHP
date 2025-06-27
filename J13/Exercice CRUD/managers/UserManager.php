@@ -73,7 +73,7 @@ class UserManager extends AbstractManager {
         $query = $this -> db->prepare("DELETE FROM users WHERE id = :id");
 
         $parameters = [
-        "id" => $user ->getId(),
+        "id" => $id,
         ];
 
     $query->execute($parameters);
