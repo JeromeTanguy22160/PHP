@@ -63,13 +63,13 @@ class UserManager extends AbstractManager {
         "id" => $user ->getId(),
         "email" => $user -> getEmail(),
         "first_name" => $user -> getFirstName(),
-        "last_name"=> $user -> getLastname(),
+        "last_name"=> $user -> getLastName(),
         ];
 
     $query->execute($parameters);
     }
     
-    public function deleteUser(User $user) : void{
+    public function deleteUser(int $id) : void{
         $query = $this -> db->prepare("DELETE FROM users WHERE id = :id");
 
         $parameters = [

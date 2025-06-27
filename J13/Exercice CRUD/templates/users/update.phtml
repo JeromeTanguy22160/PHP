@@ -1,6 +1,7 @@
 <main>
     <h1>Update User</h1>
     <form method = "post" action="index.php?route=check_update_user" >
+        <input type = "hidden" name="id" value = "<?= $user -> getId()?>" />
         <label for="email">Email</label>
         <input type="text" name="email" id="email"/>
         <label for="first_name">First Name</label>
