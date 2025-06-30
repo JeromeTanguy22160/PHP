@@ -44,7 +44,7 @@ class CategoryManager extends AbstractManager
     
     public function findByPost(int $postId) : array {
         $query = $this -> db -> prepare ("SELECT categories.* FROM categories 
-        JOIN posts_categories ON categories.id = posts_categories.categories_id
+        JOIN posts_categories ON categories.id = posts_categories.category_id
         WHERE posts_categories.post_id = :postId");
         $parameters = [
             'postId' => $postId

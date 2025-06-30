@@ -7,8 +7,11 @@
 
 class PostManager extends AbstractManager
 {
+    private CategoryManager $categoryManager;
+    
     public function __construct(){
         parent :: __construct();
+         $this->categoryManager = new CategoryManager();
     }
     
     public function findLastest() :array {
@@ -22,13 +25,14 @@ class PostManager extends AbstractManager
         foreach($postsData as $postData){
             $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
             $post -> setId($postData["id"]);
+            $categories = $this->categoryManager->findByPost($postData["id"]);
             $post -> setCategories($categories);
-            $posts[] = $posts;
+            $posts[] = $post;
         }
         return $posts;
     }
     
-    public function findOne(int $id) : Post {
+    public function findOne(int $id) :?Post {
         
         $query = $this -> db -> prepare("SELECT * FROM posts WHERE id = :id");
         $parameters = [
@@ -40,15 +44,32 @@ class PostManager extends AbstractManager
         if($postData){
             $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
             $post -> setId($postData["id"]);
+            $categories = $this->categoryManager->findByPost($postData["id"]);
             $post -> setCategories($categories);
             return $post;
         }
         return null;
     }
     
-        public function findByCategory(int $categoryId) : array {
+    public function findByCategory(int $categoryId) : array {
             
-            
-            
+        $query = $this -> db -> prepare ("SELECT posts.* FROM posts 
+        JOIN posts_categories ON posts.id = posts_categories.post_id
+        WHERE posts_categories.category_id = :categoryId");
+        $parameters = [
+            'categoryId' => $categoryId
+            ];
+        $query -> execute($parameters);
+        $postsData = $query->fetchAll(PDO::FETCH_ASSOC);
+        $posts = [];
+        
+        foreach($postsData as $postData){
+            $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
+            $post -> setId($postData["id"]);
+            $categories = $this->categoryManager->findByPost($postData["id"]);
+            $post -> setCategories($categories);
+            $posts[] = $post;
         }
+        return $posts;
+    }
 }
