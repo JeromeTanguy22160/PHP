@@ -4,8 +4,6 @@
  * @link : https://github.com/Gaellan
  */
 
-require "Post.php";
-
 class Comment
 {
     private ? int $id = null;
@@ -23,14 +21,14 @@ class Comment
     public function getId() :? int{
         return $this -> id;
     }
-    public function setId($id) : void{
+    public function setId(int $id) : void{
         $this -> id = $id;
     }
     
     public function getContent() : string{
         return $this -> content;
     }
-    public function setContent($content) : void{
+    public function setContent(string $content) : void{
         $this -> content = $content;
     }
     
