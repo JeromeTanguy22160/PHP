@@ -14,27 +14,44 @@ class PostManager extends AbstractManager
          $this->categoryManager = new CategoryManager();
     }
     
-    public function findLastest() :array {
+    private function hydratePost(array $posts): Post {
+        $author = new User($posts["username"], $posts["email"], $posts["password"], $posts["role"]);
+        $author -> setId($posts["author"]);
+        $author -> setCreatedAt($posts["created_at"]);
+        
+        $categories = $this->findCategoriesForPost($posts["id"]);
+        
+        $post = new Post($posts["title"], $posts["excerpt"], $posts["content"], $author);
+        $post -> setId($posts['id']);
+        $post -> setCreatedAt($posts["created_at"]);
+        $post -> setCategories($categories);
     
-        $query = $this -> db -> prepare("SELECT * FROM posts ORDER BY id DESC LIMIT 4");
+        return $post;
+    }
+    
+    public function findLatest() :array {
+    
+        $query = $this -> db -> prepare("SELECT posts.*, users.username, users.email,
+             users.password, users.role, users.created_at FROM posts 
+             JOIN users ON posts.author = users.id 
+             ORDER BY posts.created_at DESC LIMIT 4");
         $query ->execute();
         $postsData = $query -> fetchAll(PDO::FETCH_ASSOC);
         
         $posts = [];
         
         foreach($postsData as $postData){
-            $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
-            $post -> setId($postData["id"]);
-            $categories = $this->categoryManager->findByPost($postData["id"]);
-            $post -> setCategories($categories);
-            $posts[] = $post;
+            $posts[] = $this -> hydratePost($postData);
         }
         return $posts;
     }
     
     public function findOne(int $id) :?Post {
         
-        $query = $this -> db -> prepare("SELECT * FROM posts WHERE id = :id");
+        $query = $this -> db -> prepare("SELECT posts.*, users.username, users.email,
+             users.password, users.role, users.created_at FROM posts 
+             JOIN users ON posts.author = users.id 
+             WHERE posts.id = :id");
         $parameters = [
         "id" => $id,
         ];
@@ -42,20 +59,17 @@ class PostManager extends AbstractManager
         $postData = $query->fetch(PDO::FETCH_ASSOC);
         
         if($postData){
-            $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
-            $post -> setId($postData["id"]);
-            $categories = $this->categoryManager->findByPost($postData["id"]);
-            $post -> setCategories($categories);
-            return $post;
+            return $this -> hydratePost($postData);
         }
         return null;
     }
     
     public function findByCategory(int $categoryId) : array {
             
-        $query = $this -> db -> prepare ("SELECT posts.* FROM posts 
-        JOIN posts_categories ON posts.id = posts_categories.post_id
-        WHERE posts_categories.category_id = :categoryId");
+        $query = $this -> db -> prepare ("SELECT posts.*, users.username, users.email, users.password, users.role, users.created_at FROM posts 
+             JOIN users ON posts.author = users.id
+             JOIN posts_categories ON posts.id = posts_categories.post_id
+             WHERE posts_categories.category_id = :categoryId ORDER BY posts.created_at");
         $parameters = [
             'categoryId' => $categoryId
             ];
@@ -64,12 +78,29 @@ class PostManager extends AbstractManager
         $posts = [];
         
         foreach($postsData as $postData){
-            $post = new Post($postData["title"], $postData["excerpt"], $postData["content"], $postData["User"]);
-            $post -> setId($postData["id"]);
-            $categories = $this->categoryManager->findByPost($postData["id"]);
-            $post -> setCategories($categories);
-            $posts[] = $post;
+            $posts[] = $this -> hydratePost($postData);
         }
         return $posts;
+    }
+    
+    private function findCategoriesForPost(int $postId): array{
+        
+        $query = $this -> db -> prepare("SELECT categories.* FROM categories
+             JOIN posts_categories ON categories.id = posts_categories.category_id 
+             WHERE posts_categories.post_id = :postId");
+         $parameters = [
+            'postId' => $postId
+            ];
+        $query -> execute($parameters);
+        $categoriesData = $query -> fetchAll(PDO::FETCH_ASSOC);
+        
+        $categories = [];
+        
+        foreach($categoriesData as $categoryData){
+            $category = new Category($categoryData["title"],$categoryData["description"]);
+            $category -> setId($categoryData["id"]);
+            $categories[] = $category;
+        }
+        return $categories;
     }
 }

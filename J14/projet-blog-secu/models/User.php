@@ -10,8 +10,11 @@ class User
     private ? int $id = null;
     private string $created_at;
     
-    public function __construct(private string $username, private string $email,
-    private string $password, private ? string $role = "USER")
+    public function __construct(
+        private string $username, 
+        private string $email,
+        private string $password, 
+        private string $role = "USER")
     {
         $this -> created_at = date("Y-m-d H:i:s");
     }
@@ -52,9 +55,9 @@ class User
     }
     
     public function getCreatedAt() : string{
-        return $this -> create_at;
+        return $this -> created_at;
     }
-    public function setCreatedAt(string $create_at) : void{
-        $this -> create_at = $create_at;
+    public function setCreatedAt(string $created_at) : void{
+        $this -> created_at = $created_at;
     }
 }

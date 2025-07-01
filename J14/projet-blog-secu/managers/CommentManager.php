@@ -12,7 +12,13 @@ class CommentManager extends AbstractManager
     }
     
     public function findByPost(int $postId) : array {
-        $query = $this -> db -> prepare ("SELECT comments.* FROM comments 
+        
+        $postManager = new PostManager();
+        $postObject = $postManager->findOne($postId);
+        
+        $query = $this -> db -> prepare ("SELECT comments.*,users.username, users.email, users.password, users.role, users.created_at, users.id as user_id 
+        FROM comments 
+        JOIN users ON comments.user_id = users.id
         WHERE post_id = :postId");
         $parameters = [
             'postId' => $postId
@@ -22,7 +28,10 @@ class CommentManager extends AbstractManager
         $comments = [];
         
         foreach($commentsData as $commentData){
-            $comment = new Comment($commentData["content"], $commentData["user_id"], $commentData["post_id"]);
+            $user = new User($commentData["username"],$commentData["email"], $commentData["password"],$commentData["role"]);
+            $user -> setId($commentData["user_id"]);
+            $user -> setCreatedAt($commentData["created_at"]);
+            $comment = new Comment($commentData["content"], $user, $postObject);
             $comment -> setId($commentData["id"]);
             $comments[] = $comment;
         }
@@ -49,7 +58,7 @@ class CommentManager extends AbstractManager
               "post_id" => $comment -> getPost() -> getId()
               ]; 
           $query -> execute($parameters);
+          $comment -> setId($this -> db -> lastInsertId());
         }
-        
     }
 }

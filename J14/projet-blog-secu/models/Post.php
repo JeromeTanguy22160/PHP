@@ -58,15 +58,15 @@ class Post
     public function getCategories() : array {
         return $this -> categories;
     }
-    public function setCategories(Category $category) : void{
-        $this -> categories[] = $category ;
+    public function setCategories(array $categories) : void{
+        $this -> categories = $categories ;
     }
     
     public function getCreatedAt() : string{
-        return $this -> create_at;
+        return $this -> created_at;
     }
-    public function setCreatedAt(string $create_at) : void{
-        $this -> create_at = $create_at;
+    public function setCreatedAt(string $created_at) : void{
+        $this -> created_at = $created_at;
     }
     
 }

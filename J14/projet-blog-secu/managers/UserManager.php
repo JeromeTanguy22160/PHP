@@ -19,9 +19,14 @@ class UserManager extends AbstractManager
             'email' => $email
             ];
         $query -> execute($parameters);
-        $user = $query->fetch(PDO::FETCH_ASSOC);
-        
-        return $user;
+        $userData = $query->fetch(PDO::FETCH_ASSOC);
+         if($userData){
+            $user = new User($userData["username"], $userData["email"], $userData["password"], $userData["role"]);
+            $user -> setId($userData["id"]);
+            $user -> setCreatedAt($userData["created_at"]);
+            return $user;
+        }
+        return null;
     }
     
     public function findOne(int $id) :?User {
@@ -58,7 +63,7 @@ class UserManager extends AbstractManager
           $parameters = [
               "username" => $user -> getUsername(),
               "email" => $user -> getEmail(),
-              "password" => password_hash($user->getPassword(), PASSWORD_DEFAULT),
+              "password" => $user->getPassword(),
               "role" => $user -> getRole() 
               ]; 
           $query -> execute($parameters);
