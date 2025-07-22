@@ -1,5 +1,11 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+$sk = $_ENV['SK'];
+
+$stripe = new \Stripe\StripeClient($sk);
+
 function calculateOrderAmount(int $amount): int {
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
