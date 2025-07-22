@@ -3,7 +3,7 @@
 /* global fetch */
 /* global URLSearchParams */
 
-const stripe;
+const stripe = Stripe("pk_test_51RnbM5FVjqNrIz75crmb3WVn1MHZzf0ru8knyniIkhsEwZgwLPVeVR2UfjiUaxfjPTiiPNDM9x0BwJzEVn0WX2Qo00K3DT1qsb");
 
 let amount;
 initialize();
@@ -45,7 +45,7 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "",
+      return_url: "https://jerometanguy.sites.3wa.io/PHP/J16/bre04-php-donate-for-ducks/public/index.php",
     },
   });
 
