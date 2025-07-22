@@ -8,14 +8,13 @@ $dotenv->load();
 $sk = $_ENV['SK'];
 
 $stripe = new \Stripe\StripeClient($sk);
-
 function calculateOrderAmount(int $amount): int {
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
     // people from directly manipulating the amount on the client
-    $amount = $_POST['amount'];
-    $amount = $amount*100;
-    return $amount;
+    $safeAmount = htmlspecialchars($amount);
+    $safeAmount = $safeAmount*100;
+    return $safeAmount;
 }
 
 header('Content-Type: application/json');
@@ -26,6 +25,10 @@ try {
     $jsonObj = json_decode($jsonStr);
 
     // TODO : Create a PaymentIntent with amount and currency in '$paymentIntent'
+    $paymentIntent = \Stripe\PaymentIntent::create([
+        'amount' => $amount,
+        'currency' => 'eur'
+        ]);
 
     $output = [
         'clientSecret' => $paymentIntent->client_secret,
