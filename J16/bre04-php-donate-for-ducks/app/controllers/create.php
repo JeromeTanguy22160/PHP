@@ -8,6 +8,7 @@ $dotenv->load();
 $sk = $_ENV['SK'];
 
 $stripe = new \Stripe\StripeClient($sk);
+
 function calculateOrderAmount(int $amount): int {
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
@@ -26,7 +27,7 @@ try {
 
     // TODO : Create a PaymentIntent with amount and currency in '$paymentIntent'
     $paymentIntent = \Stripe\PaymentIntent::create([
-        'amount' => $amount,
+        'amount' => calculateOrderAmount($jsonObj->amount),
         'currency' => 'eur'
         ]);
 
