@@ -5,8 +5,9 @@
 
 const stripe = Stripe("pk_test_51RnbM5FVjqNrIz75crmb3WVn1MHZzf0ru8knyniIkhsEwZgwLPVeVR2UfjiUaxfjPTiiPNDM9x0BwJzEVn0WX2Qo00K3DT1qsb");
 
-let amount;
-initialize();
+let valueamount = document.getElementById("montant-personnalise");
+
+valueamount.addEventListener('change', initialize);
 
 let elements;
 
@@ -18,6 +19,14 @@ document
 
 // Fetches a payment intent and captures the client secret
 async function initialize() {
+
+  let amount = valueamount.value;
+  
+  if(!amount || amount < 1){
+    showMessage("Montant invalide");
+    return;
+  }
+  
   const { clientSecret } = await fetch("../app/controllers/create.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
