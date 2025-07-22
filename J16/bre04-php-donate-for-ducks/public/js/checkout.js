@@ -7,7 +7,7 @@ const stripe = Stripe("pk_test_51RnbM5FVjqNrIz75crmb3WVn1MHZzf0ru8knyniIkhsEwZgw
 
 let valueamount = document.getElementById("montant-personnalise");
 
-valueamount.addEventListener('change', initialize);
+valueamount.addEventListener('input', initialize);
 
 let elements;
 

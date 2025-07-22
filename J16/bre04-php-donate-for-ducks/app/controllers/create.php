@@ -1,13 +1,14 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../config');
 $dotenv->load();
 
 $sk = $_ENV['SK'];
 
-$stripe = new \Stripe\StripeClient($sk);
+$stripe = new \Stripe\StripeClient($_ENV['SK']);
+\Stripe\Stripe::setApiKey($_ENV['SK']);
 
 function calculateOrderAmount(int $amount): int {
     // Replace this constant with a calculation of the order's amount
