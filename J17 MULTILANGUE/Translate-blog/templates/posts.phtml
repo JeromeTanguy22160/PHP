@@ -1,0 +1,15 @@
+<main>
+   <div>
+        <a href="index.php?route=switch-lang">
+            <?php if ($_SESSION['lang'] === 'fr'): ?>
+                Passer en Anglais
+            <?php else: ?>
+                Switch to French
+            <?php endif; ?>
+        </a>
+    </div>
+   <?php foreach ($posts as $post) { ?>
+       <h1><?= $post->getTitleEn() ?></h1>
+       <p><?= $post->getExcerptEn() ?></p>
+   <?php } ?>
+</main>

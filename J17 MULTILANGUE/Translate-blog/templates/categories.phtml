@@ -1,0 +1,22 @@
+<main>
+    <div>
+        <a href="index.php?route=switch-lang">
+            <?php if ($_SESSION['lang'] === 'fr'): ?>
+                Passer en Anglais
+            <?php else: ?>
+                Switch to French
+            <?php endif; ?>
+        </a>
+    </div>
+   <?php if ($_SESSION["lang"] === "fr"){
+        foreach ($categories as $category) {?>
+            <h1><?= $category->getTitleFr() ?></h1>
+            <p><?= $category->getDescriptionFr() ?></p>
+        <?php } 
+     } else{
+        foreach ($categories as $category) {?>
+            <h1><?= $category->getTitleEn() ?></h1>
+            <p><?= $category->getDescriptionEn() ?></p>
+        <?php }
+        } ?>
+</main>
